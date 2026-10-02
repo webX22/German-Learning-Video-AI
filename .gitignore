@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Generated audio/video
+output/
+*.wav
+*.mp3
+*.mp4
+*.avi
+*.mov
+
+# AI models
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+*.gguf
+
+# Model/cache folders
+.cache/
+huggingface/
+models/
+checkpoints/
+
+# Environment/secrets
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# Windows
+Thumbs.db
+Desktop.ini

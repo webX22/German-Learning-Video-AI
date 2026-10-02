@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>German Learning Video AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f1117;
+            color: #ffffff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #9ca3af;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: #181b24;
+            border: 1px solid #292e3a;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        select,
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #343a46;
+            background: #10131a;
+            color: white;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .topic-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .topic {
+            padding: 12px;
+            border: 1px solid #343a46;
+            border-radius: 8px;
+            background: #11141b;
+            color: white;
+            cursor: pointer;
+        }
+
+        .topic:hover {
+            background: #252a36;
+        }
+
+        .topic.selected {
+            border-color: #4f8cff;
+            background: #1b315c;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .generate {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .generate:hover {
+            background: #1d4ed8;
+        }
+
+        .status {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #111827;
+            border: 1px solid #374151;
+        }
+
+        .custom-topic {
+            display: none;
+        }
+
+        @media (max-width: 700px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🇩🇪 German Learning Video AI</h1>
+
+    <div class="subtitle">
+        Create German conversation videos with AI voices, lip-sync and bilingual subtitles.
+    </div>
+
+    <div class="card">
+
+        <label>Choose a Topic</label>
+
+        <div class="topic-buttons">
+
+            <button class="topic" onclick="selectTopic(this, 'Restaurant')">
+                🍽️ Restaurant
+            </button>
+
+            <button class="topic" onclick="selectTopic(this, 'Shopping')">
+                🛒 Shopping
+            </button>
+
+            <button class="topic" onclick="selectTopic(this, 'Airport')">
+                ✈️ Airport
+            </button>
+
+            <button class="topic" onclick="selectTopic(this, 'Hotel')">
+                🏨 Hotel
+            </button>
+
+            <button class="topic" onclick="selectTopic(this, 'Work')">
+                💼 Work
+            </button>
+
+            <button class="topic" onclick="selectTopic(this, 'Doctor')">
+                🏥 Doctor
+            </button>
+
+            <button class="topic" onclick="selectTopic(this, 'Travel')">
+                🚆 Travel
+            </button>
+
+            <button class="topic" onclick="selectTopic(this, 'Daily Routine')">
+                🏠 Daily Routine
+            </button>
+
+            <button class="topic" onclick="selectTopic(this, 'Custom')">
+                ✏️ Custom Topic
+            </button>
+
+        </div>
+
+        <div id="customTopic" class="custom-topic">
+
+            <label>Custom Topic</label>
+
+            <input
+                id="customTopicInput"
+                type="text"
+                placeholder="Example: Two people discussing buying a new computer"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <label>German Level</label>
+
+        <select id="level">
+            <option value="A1">A1 — Beginner</option>
+            <option value="A2">A2 — Elementary</option>
+            <option value="B1">B1 — Intermediate</option>
+            <option value="B2">B2 — Upper Intermediate</option>
+        </select>
+
+
+        <div class="row">
+
+            <div>
+                <label>Character A Voice</label>
+
+                <select id="voiceA">
+    <option value="serena">Serena — Female</option>
+    <option value="vivian">Vivian — Female</option>
+    <option value="sohee">Sohee — Female</option>
+    <option value="ono_anna">Anna — Female</option>
+    <option value="ryan">Ryan — Male</option>
+    <option value="aiden">Aiden — Male</option>
+    <option value="dylan">Dylan — Male</option>
+    <option value="eric">Eric — Male</option>
+    <option value="uncle_fu">Uncle Fu — Male</option>
+</select>
+            </div>
+
+            <div>
+                <label>Character B Voice</label>
+
+                <select id="voiceB">
+                     <option value="ryan">Ryan — Male</option>
+    <option value="aiden">Aiden — Male</option>
+    <option value="dylan">Dylan — Male</option>
+    <option value="eric">Eric — Male</option>
+    <option value="uncle_fu">Uncle Fu — Male</option>
+    <option value="serena">Serena — Female</option>
+    <option value="vivian">Vivian — Female</option>
+    <option value="sohee">Sohee — Female</option>
+    <option value="ono_anna">Anna — Female</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <label>Dialogue Length</label>
+
+        <select id="length">
+            <option value="4">4 exchanges</option>
+            <option value="6">6 exchanges</option>
+            <option value="8">8 exchanges</option>
+            <option value="10">10 exchanges</option>
+        </select>
+
+    </div>
+
+
+    <div class="card">
+
+        <label>Manual Dialogue (Optional)</label>
+
+        <textarea
+            id="manualDialogue"
+            placeholder="Leave empty to let the AI create the dialogue.
+
+Example:
+
+A: Guten Morgen! Wie geht es dir?
+B: Guten Morgen! Mir geht es gut.
+A: Was machst du heute?
+B: Ich gehe einkaufen."
+        ></textarea>
+
+    </div>
+
+
+    <div class="card">
+
+        <button class="generate" onclick="generateVideo()">
+            🚀 GENERATE VIDEO
+        </button>
+
+        <div id="status" class="status"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let selectedTopic = null;
+
+
+function selectTopic(button, topic) {
+
+    document.querySelectorAll(".topic").forEach(btn => {
+        btn.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+
+    selectedTopic = topic;
+
+    const custom = document.getElementById("customTopic");
+
+    if (topic === "Custom") {
+        custom.style.display = "block";
+    } else {
+        custom.style.display = "none";
+    }
+}
+
+
+async function generateVideo() {
+
+    const status = document.getElementById("status");
+
+    let topic = selectedTopic;
+
+    if (topic === "Custom") {
+        topic = document.getElementById("customTopicInput").value;
+    }
+
+    const data = {
+
+        topic: topic,
+
+        level: document.getElementById("level").value,
+
+        voiceA: document.getElementById("voiceA").value,
+
+        voiceB: document.getElementById("voiceB").value,
+
+        length: document.getElementById("length").value,
+
+        manualDialogue: document.getElementById("manualDialogue").value
+
+    };
+
+
+    status.style.display = "block";
+
+    status.innerHTML = "⏳ Sending generation request...";
+
+
+    try {
+
+        const response = await fetch("/generate", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(data)
+
+        });
+
+
+        const result = await response.json();
+
+        status.innerHTML = "✅ " + result.message;
+
+    } catch (error) {
+
+        status.innerHTML = "❌ Error connecting to server.";
+
+        console.error(error);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
